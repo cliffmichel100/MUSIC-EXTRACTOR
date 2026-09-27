@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="akosibiko — browser-based music stem separator interface.">
+  <title>akosibiko • Music Stem Separator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand">akosibiko</div>
+      <div class="status"><span class="dot"></span> Browser audio tool</div>
+    </header>
+
+    <section class="hero">
+      <p class="eyebrow">MUSIC STEM SEPARATOR</p>
+      <h1>Import a track.<br><span>Split the sound.</span></h1>
+      <p class="lead">Extract vocals, drums, bass, and instrumental stems from an audio file directly in your browser.</p>
+
+      <label class="dropzone" id="dropzone" for="fileInput">
+        <input id="fileInput" type="file" accept="audio/*,.mp3,.wav,.flac,.m4a,.ogg">
+        <div class="upload-icon">↑</div>
+        <strong>Drop an audio file here</strong>
+        <span>or tap to browse • MP3, WAV, FLAC, M4A, OGG</span>
+      </label>
+
+      <div class="file-card hidden" id="fileCard">
+        <div>
+          <strong id="fileName">track.mp3</strong>
+          <span id="fileMeta">Ready</span>
+        </div>
+        <button class="ghost" id="removeBtn" type="button">Remove</button>
+      </div>
+
+      <div class="controls">
+        <label>
+          Separation model
+          <select id="model">
+            <option value="4stems">4 stems — vocals, drums, bass, other</option>
+            <option value="2stems">2 stems — vocals, instrumental</option>
+          </select>
+        </label>
+        <button class="primary" id="separateBtn" disabled>Separate audio</button>
+      </div>
+
+      <div class="progress hidden" id="progressWrap">
+        <div class="progress-head">
+          <span id="progressLabel">Preparing…</span>
+          <span id="progressPct">0%</span>
+        </div>
+        <div class="track"><div id="progressBar"></div></div>
+        <p id="progressNote">The demo UI simulates the separation step. Connect a real backend/model for actual source separation.</p>
+      </div>
+
+      <section class="results hidden" id="results">
+        <div class="results-head">
+          <div>
+            <p class="eyebrow">STEMS</p>
+            <h2>Your separated tracks</h2>
+          </div>
+          <button class="ghost" id="downloadAllBtn" type="button">Download all</button>
+        </div>
+        <div class="stem-grid" id="stemGrid"></div>
+      </section>
+
+      <p class="notice">
+        <b>Note:</b> This GitHub-ready frontend does not perform AI source separation by itself.
+        It provides the complete upload/results interface and can be connected to a server running
+        Demucs, Spleeter, or another audio-separation model.
+      </p>
+    </section>
+
+    <footer>
+      <span>© <span id="year"></span> akosibiko</span>
+      <span>Built for GitHub Pages</span>
+    </footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
